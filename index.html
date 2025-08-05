@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <!-- Tailwind CSS CDN for utility classes and responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for 'Inter', 'Poppins' (as Sansation alternative), and 'Scheherazade New' -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles for larger screens (desktop first approach) */
+        body {
+            font-family: 'Inter', sans-serif; /* Default font for the body */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f2f5; /* Light background for desktop */
+        }
+
+        .contact-container {
+            /* Flexbox for centering on larger screens */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            background-image: url('https://placehold.co/1920x1080/E0F2F7/2C5282?text=Background'); /* Placeholder for bg.svg */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .right {
+            background: #ffffff;
+            border-radius: 25px;
+            text-align: center;
+            padding: 2.5rem; /* Tailwind's p-10 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind's shadow-lg */
+            max-width: 360px; /* Constrain width for desktop */
+            width: 90%; /* Responsive width */
+            height: auto; /* Let height adjust to content */
+            display: flex; /* Use flex for internal layout */
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem; /* Space between elements */
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif; /* Using Poppins as Sansation alternative */
+            font-weight: 700; /* Bold */
+            font-size: 2.5rem; /* Tailwind's text-4xl */
+            line-height: 1.2;
+            color: #5754dd;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-top: -40px; /* Adjust as per original CSS */
+            border-radius: 50%; /* Make it round */
+            object-fit: cover;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            border: 2px #568aee solid;
+            outline: none;
+            background: none;
+            font-size: 1.125rem; /* Tailwind's text-lg */
+            color: #85b6ff;
+            padding: 1rem 0.625rem 1rem 0.3125rem; /* Adjust padding */
+            width: 100%; /* Full width within its container */
+            height: 45px;
+            border-radius: 25px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: 'Scheherazade New', serif;
+            margin: 0; /* Remove negative margin from original CSS */
+        }
+
+        ::placeholder {
+            color: #85b6ff;
+            font-size: 1.125rem; /* Tailwind's text-lg */
+        }
+
+        /* The .icon class was used for absolute positioning next to inputs,
+           which is complex with current setup. For simplicity,
+           it's omitted or assumed to be part of input styling/structure. */
+        .icon {
+            /* This class was likely for an icon inside the input field.
+               For this basic setup, we'll assume icons are handled differently
+               or not used as per the original CSS's simple input structure. */
+            display: none; /* Hide if not used */
+        }
+
+        input[type="checkbox"] {
+            vertical-align: middle;
+            margin-right: 0.25rem; /* Tailwind's mr-1 */
+            margin-bottom: 0.1875rem;
+            height: 18px;
+            width: 18px;
+            accent-color: #5754dd; /* Style the checkbox */
+        }
+
+        .keepme {
+            margin: 1rem 0; /* Adjust margin */
+            color: #71a1bd;
+            font-family: 'Scheherazade New', serif;
+            font-weight: bold;
+            display: flex; /* Use flex to align checkbox and text */
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        button {
+            width: 100%; /* Full width */
+            height: 45px;
+            font-family: 'Poppins', sans-serif; /* Using Poppins as Sansation alternative */
+            font-weight: bold;
+            font-size: 1.25rem; /* Tailwind's text-xl */
+            line-height: 28px;
+            cursor: pointer;
+            color: #ffffff;
+            border: none;
+            background: rgba(135, 113, 224, 0.89);
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(135, 113, 224, 1); /* Slightly darker on hover */
+        }
+
+        .link {
+            text-align: center;
+            display: block;
+            margin-top: 1.5rem; /* Tailwind's mt-6 */
+            color: #71a1bd;
+            font-family: 'Scheherazade New', serif;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #5754dd;
+        }
+
+        /* Original CSS provided by the user, applied only for screens <= 700px */
+        @media only screen and (max-width: 700px) {
+            .contact-container {
+                /* These styles will override the base flexbox centering for mobile */
+                background-image: url(https://placehold.co/700x1200/E0F2F7/2C5282?text=Mobile+Background); /* Placeholder for bg.svg on mobile */
+                background-size: cover;
+                height: 100vh;
+                /* Remove flex properties to allow absolute positioning to take effect */
+                display: block;
+                justify-content: unset;
+                align-items: unset;
+            }
+
+            .right {
+                /* These absolute positioning styles from the user's CSS are applied */
+                position: absolute;
+                width: 360px;
+                height: 500px;
+                left: 60%; /* This might cause overflow on very small screens */
+                top: calc(50% - 580px/2); /* This might cause overflow on very small screens */
+                /* Ensure padding is consistent or adjusted for mobile */
+                padding: 2.5rem;
+            }
+
+            /* Specific input styles from user's CSS */
+            input[type="email"],
+            input[type="password"] {
+                margin: -15px; /* Original negative margin */
+            }
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <div class="contact-container">
+        <div class="right">
+            <img src="https://placehold.co/120x120/5754dd/ffffff?text=Logo" alt="Logo" class="logo">
+            <div class="title">Welcome Back</div>
+            <form class="w-full flex flex-col items-center gap-4">
+                <div class="relative w-full">
+                    <!-- Icon placeholder - not directly used in this simplified HTML structure for the given CSS -->
+                    <!-- <img src="icon-email.svg" alt="Email Icon" class="icon"> -->
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="relative w-full">
+                    <!-- Icon placeholder -->
+                    <!-- <img src="icon-password.svg" alt="Password Icon" class="icon"> -->
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="keepme">
+                    <input type="checkbox" id="keep-me-logged-in">
+                    <label for="keep-me-logged-in">Keep Me Logged In</label>
+                </div>
+                <button type="submit">Log In</button>
+                <a href="#" class="link">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
